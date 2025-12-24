@@ -60,7 +60,7 @@ Prioridade de execução:
 
 ```tsx
 <BotaoAvancar text="Avançar" to="/CadastroCliente" />
-
+```
 
 🧩 Componente: CaixadeEntrada
 
@@ -87,13 +87,15 @@ Propriedade	Tipo	Obrigatória	Descrição
 name	string	✅	Label do campo
 onChangeText	(text: string) => void	✅	Callback de alteração
 📌 Exemplo de Uso
+
+```tsx
 <CaixadeEntrada
   name="Nome da cliente"
   onChangeText={setName}
 />
-<ImagePickerCliente
-  onChange={(uri) => setFotoCliente(uri)}
-/>
+```
+
+
 🧩 Componente: ImagePickerCliente
 
 Componente responsável por permitir a seleção de imagens da galeria, exibindo uma pré-visualização em formato de avatar.
@@ -118,9 +120,12 @@ Exibe avatar padrão ou imagem selecionada
 Propriedade	Tipo	Obrigatória	Descrição
 onChange	(uri: string) => void	❌	Retorna a URI da imagem
 📌 Exemplo de Uso
+```tsx
 <ImagePickerCliente
   onChange={(uri) => setFotoCliente(uri)}
 />
+```
+
 🧩 Componente: InputDatePicker
 
 Componente reutilizável para seleção de datas, com bloqueio total de datas passadas.
@@ -145,9 +150,11 @@ Retorno em formato ISO 8601
 Propriedade	Tipo	Obrigatória	Descrição
 onChangeDate	(date: string) => void	❌	Retorna data em formato ISO
 📌 Exemplo de Uso
+```tsx
 <InputDatePicker
   onChangeDate={(date) => console.log(date)}
 />
+```
 
 ⏰ Componente: InputTimePicker
 
@@ -169,9 +176,11 @@ Campo somente leitura
 Propriedade	Tipo	Obrigatória	Descrição
 onChangeTime	(value: string) => void	✅	Retorna horário formatado
 📌 Exemplo de Uso
+```tsx
 <InputTimePicker
   onChangeTime={(time) => setHorario(time)}
 />
+```
 
 ▶️ Como Executar o Projeto
 Instalar dependências
