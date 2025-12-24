@@ -1,50 +1,193 @@
-# Welcome to your Expo app 👋
+# 💅 Aplicativo de Manicure – Componentes Reutilizáveis
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Coleção de componentes reutilizáveis desenvolvidos em **React Native + Expo**, focados em formulários, agendamentos, navegação e seleção de mídia, seguindo boas práticas de **tipagem**, **reutilização** e **legibilidade**.
 
-## Get started
+---
 
-1. Install dependencies
+## 📑 Sumário
 
-   ```bash
-   npm install
-   ```
+- [Tecnologias Utilizadas](#-tecnologias-utilizadas)
+- [BotaoAvancar](#-componente-botaoavancar)
+- [CaixadeEntrada](#-componente-caixadeentrada)
+- [ImagePickerCliente](#-componente-imagepickercliente)
+- [InputDatePicker](#-componente-inputdatepicker)
+- [InputTimePicker](#-componente-inputtimepicker)
+- [Como Executar o Projeto](#-como-executar-o-projeto)
+- [Objetivo do Projeto](#-objetivo-do-projeto)
 
-2. Start the app
+---
 
-   ```bash
-   npx expo start
-   ```
+## 🛠️ Tecnologias Utilizadas
 
-In the output, you'll find options to open the app in a
+- React Native  
+- Expo  
+- TypeScript  
+- Expo Router  
+- React Native Paper  
+- react-native-paper-dates  
+- expo-image-picker  
+- react-native-modal-datetime-picker  
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+---
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## 🧩 Componente: BotaoAvancar
 
-## Get a fresh project
+Componente reutilizável responsável por exibir um botão de ação principal, utilizado para navegação entre telas ou execução de lógica customizada.
 
-When you're ready, run:
+### 🎯 Objetivo
 
-```bash
-npm run reset-project
-```
+- Padronizar botões de avanço no aplicativo  
+- Permitir navegação via Expo Router  
+- Executar ações customizadas  
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+### 🔄 Comportamento
 
-## Learn more
+Prioridade de execução:
 
-To learn more about developing your project with Expo, look at the following resources:
+1. Executa `onPress`, se informado  
+2. Caso contrário, navega para a rota definida em `to`  
+3. Se nenhuma prop for passada, não executa ação  
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+### 🧠 Props
 
-## Join the community
+| Propriedade | Tipo | Obrigatória | Descrição |
+|------------|------|-------------|----------|
+| text | string | ✅ | Texto exibido no botão |
+| to | string | ❌ | Rota de navegação |
+| onPress | () => void \| Promise<void> | ❌ | Ação customizada |
 
-Join our community of developers creating universal apps.
+### 📌 Exemplo de Uso
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+```tsx
+<BotaoAvancar text="Avançar" to="/CadastroCliente" />
+
+
+🧩 Componente: CaixadeEntrada
+
+Componente reutilizável para entrada de texto, baseado em React Native Paper, respeitando áreas seguras da tela.
+
+🎯 Objetivo
+
+Padronizar campos de formulário
+
+Facilitar reutilização
+
+Manter layout consistente
+
+🔄 Comportamento
+
+Renderiza um TextInput
+
+Dispara onChangeText a cada alteração
+
+Não mantém estado interno
+
+🧠 Props
+Propriedade	Tipo	Obrigatória	Descrição
+name	string	✅	Label do campo
+onChangeText	(text: string) => void	✅	Callback de alteração
+📌 Exemplo de Uso
+<CaixadeEntrada
+  name="Nome da cliente"
+  onChangeText={setName}
+/>
+<ImagePickerCliente
+  onChange={(uri) => setFotoCliente(uri)}
+/>
+🧩 Componente: ImagePickerCliente
+
+Componente responsável por permitir a seleção de imagens da galeria, exibindo uma pré-visualização em formato de avatar.
+
+🎯 Objetivo
+
+Facilitar cadastro de imagens
+
+Oferecer feedback visual imediato
+
+Retornar a URI da imagem
+
+🔄 Comportamento
+
+Abre a galeria do dispositivo
+
+Permite apenas imagens
+
+Exibe avatar padrão ou imagem selecionada
+
+🧠 Props
+Propriedade	Tipo	Obrigatória	Descrição
+onChange	(uri: string) => void	❌	Retorna a URI da imagem
+📌 Exemplo de Uso
+<ImagePickerCliente
+  onChange={(uri) => setFotoCliente(uri)}
+/>
+🧩 Componente: InputDatePicker
+
+Componente reutilizável para seleção de datas, com bloqueio total de datas passadas.
+
+🎯 Objetivo
+
+Garantir seleção segura de datas futuras, evitando erros de agendamento.
+
+✅ Funcionalidades
+
+Calendário modal
+
+Bloqueio de datas passadas (UI + lógica)
+
+Campo não editável
+
+Localização em português
+
+Retorno em formato ISO 8601
+
+🧠 Props
+Propriedade	Tipo	Obrigatória	Descrição
+onChangeDate	(date: string) => void	❌	Retorna data em formato ISO
+📌 Exemplo de Uso
+<InputDatePicker
+  onChangeDate={(date) => console.log(date)}
+/>
+
+⏰ Componente: InputTimePicker
+
+Componente reutilizável para seleção de horário, utilizando modal nativo.
+
+🎯 Objetivo
+
+Evitar digitação manual e garantir consistência no formato de horário.
+
+✅ Funcionalidades
+
+Modal de horário
+
+Formatação automática HH:mm
+
+Campo somente leitura
+
+🧠 Props
+Propriedade	Tipo	Obrigatória	Descrição
+onChangeTime	(value: string) => void	✅	Retorna horário formatado
+📌 Exemplo de Uso
+<InputTimePicker
+  onChangeTime={(time) => setHorario(time)}
+/>
+
+▶️ Como Executar o Projeto
+Instalar dependências
+npm install
+
+Iniciar o projeto
+npx expo start
+
+🎯 Objetivo do Projeto
+
+Criar base sólida de componentes reutilizáveis
+
+Praticar React Native + Expo
+
+Servir como projeto de portfólio
+
+Evoluir para um sistema completo de agendamento
+
+
