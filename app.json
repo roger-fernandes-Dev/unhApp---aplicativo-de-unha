@@ -1,0 +1,37 @@
+{
+  "expo": {
+    "scheme": "unhapp",
+    "plugins": [
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "O aplicativo acessa suas fotos para você adicionar uma ao seu perfil"
+        }
+      ],
+      "react-native-localize"
+    ],
+    "name": "UnhApp",
+    "slug": "UnhApp",
+    "icon": "./assets/images/iconApp.png",
+    "splash": {
+      "image": "./assets/images/splashunhApp.png",
+      "resizeMode": "cover",
+      "backgroundColor": "#ffffff"
+    },
+    "android": {
+      "package": "com.rogerfernandes.UnhApp",
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/images/iconApp.png",
+        "backgroundColor": "#ffffff"
+      },
+      "permissions": [
+        "android.permission.RECORD_AUDIO"
+      ]
+    },
+    "extra": {
+      "eas": {
+        "projectId": "cfe708ea-9316-4a04-b90b-4bb8d59b4966"
+      }
+    }
+  }
+}
